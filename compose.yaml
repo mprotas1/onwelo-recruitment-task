@@ -1,0 +1,9 @@
+services:
+  postgres:
+    image: 'postgres:17'
+    environment:
+      POSTGRES_DB: onwelo
+      POSTGRES_USER: onwelo
+      POSTGRES_PASSWORD: onwelo
+    ports:
+      - '5433:5432'
