@@ -1,0 +1,1 @@
+ALTER TABLE votes ADD CONSTRAINT uq_voter_election UNIQUE (voter_id, election_id);

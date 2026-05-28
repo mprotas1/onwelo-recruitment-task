@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
-@Transactional
 @Slf4j
 class VotingService implements CastVoteUseCase {
 
@@ -20,6 +19,7 @@ class VotingService implements CastVoteUseCase {
     private final Clock clock;
 
     @Override
+    @Transactional
     public Vote cast(CastVoteCommand command) {
         log.info("Casting vote for voter: [{}], election: [{}], option: [{}]", command.voterId(), command.electionId(), command.optionId());
         votingPolicy.validate(command);
