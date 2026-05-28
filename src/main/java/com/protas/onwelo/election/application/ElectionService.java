@@ -34,7 +34,7 @@ class ElectionService implements CreateElectionUseCase, AddElectionOptionUseCase
 
     @Override
     public Election addOption(AddOptionCommand command) {
-        Election election = electionRepository.findById(ElectionId.of(command.electionId()))
+        Election election = electionRepository.findWithOptionsById(ElectionId.of(command.electionId()))
                 .orElseThrow(() -> new ElectionNotFoundException(command.electionId()));
         validateDuplicateCommand(command, election);
         ElectionOption option = ElectionOption.create(command.name(), command.description());

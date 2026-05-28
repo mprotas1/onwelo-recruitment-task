@@ -20,7 +20,7 @@ public final class InMemoryElectionRepositoryAdapter implements ElectionReposito
     }
 
     @Override
-    public Optional<Election> findById(ElectionId id) {
+    public Optional<Election> findWithOptionsById(ElectionId id) {
         return Optional.ofNullable(elections.get(id.value()));
     }
 
@@ -41,6 +41,6 @@ public final class InMemoryElectionRepositoryAdapter implements ElectionReposito
     }
 
     public void addOption(ElectionId electionId, ElectionOption option) {
-        findById(electionId).ifPresent(election -> election.addOption(option));
+        findWithOptionsById(electionId).ifPresent(election -> election.addOption(option));
     }
 }

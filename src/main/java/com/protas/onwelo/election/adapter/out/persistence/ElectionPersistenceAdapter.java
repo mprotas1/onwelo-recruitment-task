@@ -19,7 +19,7 @@ class ElectionPersistenceAdapter implements ElectionRepository {
     }
 
     @Override
-    public Optional<Election> findById(ElectionId id) {
+    public Optional<Election> findWithOptionsById(ElectionId id) {
         return jpaRepository.findById(id.value()).map(ElectionEntity::toDomain);
     }
 

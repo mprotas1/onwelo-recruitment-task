@@ -21,7 +21,7 @@ class ElectionQueryService implements GetElectionUseCase, ElectionValidationUseC
     @Override
     @Transactional(readOnly = true)
     public Election getElection(UUID id) {
-        return electionRepository.findById(ElectionId.of(id))
+        return electionRepository.findWithOptionsById(ElectionId.of(id))
                 .orElseThrow(() -> new ElectionNotFoundException(id));
     }
 
@@ -34,7 +34,7 @@ class ElectionQueryService implements GetElectionUseCase, ElectionValidationUseC
     @Override
     @Transactional(readOnly = true)
     public boolean isValidOption(ElectionId electionId, ElectionOptionId optionId) {
-        return electionRepository.findById(electionId)
+        return electionRepository.findWithOptionsById(electionId)
                 .map(election -> election.hasOption(optionId))
                 .orElse(false);
     }

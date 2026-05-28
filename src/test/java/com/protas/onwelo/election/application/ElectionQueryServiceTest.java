@@ -43,7 +43,7 @@ class ElectionQueryServiceTest {
         Election election = electionRepository.save(Election.create("Election", "desc", List.of()));
         electionRepository.addOption(election.getId(), ElectionOption.create("Option A", "desc"));
 
-        ElectionOptionId optionId = electionRepository.findById(election.getId())
+        ElectionOptionId optionId = electionRepository.findWithOptionsById(election.getId())
                 .map(Election::getOptions)
                 .orElseThrow(() -> new AssertionError("Could not match election"))
                 .iterator().next().getId();
